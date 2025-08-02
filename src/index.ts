@@ -11,22 +11,22 @@ export class MyMCP extends McpAgent {
 
 	async init() {
 		// Simple addition tool
-		this.server.tool(
-      "execute_method",
-      "Execute any Odoo method with custom parameters. Use this for advanced operations or when other tools don't cover your needs.",
-      {
-        model: z.string(),
-        method: z.string(),
-        args: z.array(z.any()).optional(),
-        kwargs: z.record(z.any()).optional(),
-      },
-      async ({ model, method, args = [], kwargs = {} }) => {
-        const res = await this.odoo.executeKw(model, method, args, kwargs);
-        return {
-          content: [{ type: "text", text: JSON.stringify(res) }],
-        };
-      }
-    );
+	// 	this.server.tool(
+    //   "execute_method",
+    //   "Execute any Odoo method with custom parameters. Use this for advanced operations or when other tools don't cover your needs.",
+    //   {
+    //     model: z.string(),
+    //     method: z.string(),
+    //     args: z.array(z.any()).optional(),
+    //     kwargs: z.record(z.any()).optional(),
+    //   },
+    //   async ({ model, method, args = [], kwargs = {} }) => {
+    //     const res = await this.odoo.executeKw(model, method, args, kwargs);
+    //     return {
+    //       content: [{ type: "text", text: JSON.stringify(res) }],
+    //     };
+    //   }
+    // );
 		this.server.tool(
 			"add",
 			{ a: z.number(), b: z.number() },
